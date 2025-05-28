@@ -1,27 +1,26 @@
-# fly.toml app configuration file generated for my-openwebui on 2025-05-23T19:19:48+08:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'my-openwebui'
-primary_region = 'fra'
-
-# [build]
-#   image = 'ghcr.io/open-webui/open-webui:main'
+app = "my-openwebui"
+primary_region = "fra"
 
 [build]
-image = 'ghcr.io/jf-devops/openwebui:latest'
-
-
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+image = "ghcr.io/jf-devops/openwebui:latest"
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+cpu_kind = "shared"
+cpus     = 2
+memory   = "4gb"         # shared-cpu-2x max
+
+[mounts]
+source      = "openwebui_data"
+destination = "/app/backend/data"
+
+[[services]]
+internal_port = 8080
+protocol      = "tcp"
+
+  [[services.ports]]
+  port     = 443
+  handlers = ["tls", "http"]
+
+  [[services.ports]]
+  port     = 80
+  handlers = ["http"]
