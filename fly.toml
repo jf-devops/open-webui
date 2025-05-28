@@ -6,8 +6,12 @@
 app = 'my-openwebui'
 primary_region = 'fra'
 
+# [build]
+#   image = 'ghcr.io/open-webui/open-webui:main'
+
 [build]
-  image = 'ghcr.io/open-webui/open-webui:main'
+image = "ghcr.io/jf-devops/openwebui:latest"
+
 
 [http_service]
   internal_port = 8080
