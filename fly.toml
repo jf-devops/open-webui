@@ -2,7 +2,7 @@ app = "my-openwebui"
 primary_region = "fra"
 
 [build]
-image = "ghcr.io/jf-devops/openwebui:latest"
+image = "ghcr.io/jf-devops/open-webui:latest"
 
 [[vm]]
 cpu_kind = "shared"
