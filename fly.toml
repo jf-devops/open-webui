@@ -24,3 +24,8 @@ protocol      = "tcp"
   [[services.ports]]
   port     = 80
   handlers = ["http"]
+
+[registry]
+server   = "ghcr.io"
+username = "jf-devops"        # org or user that owns the image
+password = "${GHCR_TOKEN}"    # Fly substitutes the secret at deploy time
